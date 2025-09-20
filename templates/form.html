@@ -8,5 +8,12 @@
             <textarea name="user_text" rows="5"></textarea>
             <input type="submit" value="Analyze Text">
         </form>
+        {% if sentiment %}
+            <h2>Sentiment Analysis Results</h2>
+            <p>Positive: {{ sentiment['pos'] * 100 }}%</p>
+            <p>Negative: {{ sentiment['neg'] * 100 }}%</p>
+            <p>Neutral: {{ sentiment['neu'] * 100 }}%</p>
+            <p>Compound: {{ sentiment['compound'] }}</p>
+        {% endif %}
     </body>
 </html>
