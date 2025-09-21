@@ -2,19 +2,88 @@
 <html>
     <head>
         <title>Sentiment Analysis</title>
+        <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet">
+        <style>
+            body {
+                background: #f5f7fa;
+                font-family: 'Roboto', Arial, sans-serif;
+                margin: 0;
+                min-height: 100vh;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            .center-container {
+                background: #fff;
+                border-radius: 16px;
+                box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+                padding: 32px 40px;
+                max-width: 420px;
+                width: 100%;
+                text-align: center;
+            }
+            h2 {
+                color: #2d3748;
+                margin-bottom: 16px;
+            }
+            form {
+                margin-bottom: 24px;
+            }
+            textarea {
+                width: 100%;
+                border-radius: 8px;
+                border: 1px solid #cbd5e1;
+                padding: 12px;
+                font-size: 1rem;
+                resize: vertical;
+                margin-bottom: 16px;
+                box-sizing: border-box;
+            }
+            input[type="submit"] {
+                background: #3182ce;
+                color: #fff;
+                border: none;
+                border-radius: 8px;
+                padding: 10px 24px;
+                font-size: 1rem;
+                cursor: pointer;
+                font-weight: 700;
+                transition: background 0.2s;
+            }
+            input[type="submit"]:hover {
+                background: #2563eb;
+            }
+            .results {
+                background: #f1f5f9;
+                border-radius: 8px;
+                padding: 16px;
+                margin-top: 8px;
+                color: #2d3748;
+                font-size: 1rem;
+            }
+            .results p {
+                margin: 8px 0;
+            }
+        </style>
     </head>
     <body>
-        <form method="POST">
-            <textarea name="user_text" rows="5"></textarea>
-            <input type="submit" value="Analyze Text">
-        </form>
-        {% if sentiment %}
-            <h2>Sentiment Analysis Results</h2>
-            <p>Positive: {{ sentiment['pos'] * 100 }}%</p>
-            <p>Negative: {{ sentiment['neg'] * 100 }}%</p>
-            <p>Neutral: {{ sentiment['neu'] * 100 }}%</p>
-            <p>Compound: {{ sentiment['compound'] }}</p>
-            <p>Custom: {{ sentiment['custom model positive'] }} </p>
-        {% endif %}
+        <div class="center-container">
+            <h2>Sentiment Analysis</h2>
+            <form method="POST">
+                <textarea name="user_text" rows="5" placeholder="Enter text to analyze..."></textarea>
+                <br>
+                <input type="submit" value="Analyze Text">
+            </form>
+            {% if sentiment %}
+                <div class="results">
+                    <h3>Results</h3>
+                    <p><strong>Positive:</strong> {{ sentiment['pos'] * 100 }}%</p>
+                    <p><strong>Negative:</strong> {{ sentiment['neg'] * 100 }}%</p>
+                    <p><strong>Neutral:</strong> {{ sentiment['neu'] * 100 }}%</p>
+                    <p><strong>Compound:</strong> {{ sentiment['compound'] }}</p>
+                    <p><strong>Custom:</strong> {{ sentiment['custom model positive'] }} </p>
+                </div>
+            {% endif %}
+        </div>
     </body>
 </html>
