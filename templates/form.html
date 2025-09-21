@@ -14,6 +14,7 @@
             <p>Negative: {{ sentiment['neg'] * 100 }}%</p>
             <p>Neutral: {{ sentiment['neu'] * 100 }}%</p>
             <p>Compound: {{ sentiment['compound'] }}</p>
+            <p>Custom: {{ sentiment['custom model positive'] }} </p>
         {% endif %}
     </body>
 </html>
